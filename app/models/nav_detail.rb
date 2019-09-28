@@ -3,6 +3,7 @@
 #
 class NavDetail
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :nav, type: Float
   field :repurchasing_price, type: Float
@@ -13,7 +14,7 @@ class NavDetail
   belongs_to :scheme
 
   ## indexes
-  # scheme wise ascending and date wise descending index as most of the time we will deal with fresh nav details
+  # scheme wise ascending and date wise descending index as most of the time we will deal with fresh NAV details
   index({ scheme_id: 1, date: -1 })
 
   ##validations

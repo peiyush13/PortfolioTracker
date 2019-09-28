@@ -4,6 +4,7 @@
 #
 class Scheme
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :code, type: String
   field :name, type: String
@@ -15,6 +16,7 @@ class Scheme
   #@todo convert this static _type to STI to store type specific details, also can be used for type based filtering
   # field :_type, type: String, default: ''
 
+  #@todo add validations on inception_date presence
   field :inception_date, type: Date #represents the date from where fund has started
 
   ##associations
@@ -22,5 +24,5 @@ class Scheme
   has_many :nav_details
 
   ##validations
-  validates :name, :code, :isin_div_payout, :isin_div_reinvestment, :inception_date, :fund_house_id, presence: true
+  validates :name, :code, :fund_house_id, presence: true
 end

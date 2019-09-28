@@ -3,6 +3,7 @@
 #
 class Transaction
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :units, type: Float
   field :amount, type: Float
@@ -16,7 +17,6 @@ class Transaction
   belongs_to :investment
 
   ## indexes
-  # scheme wise ascending and date wise descending index as most of the time we will deal with fresh NAV details
   index({ scheme_id: 1, investment_id: 1 })
 
   ##validations

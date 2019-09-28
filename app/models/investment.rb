@@ -3,6 +3,7 @@
 #
 class Investment
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :units, type: Float
   field :invested_amount, type: Float

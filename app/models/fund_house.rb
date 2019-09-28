@@ -3,6 +3,7 @@
 #
 class FundHouse
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :name, type: String
   field :fundhouse_id, type: String, default: '' #fund house's unique id prior to AMFI

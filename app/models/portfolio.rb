@@ -3,6 +3,7 @@
 #
 class Portfolio
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :invested_amount, type: Float
   field :xirr, type: Float
