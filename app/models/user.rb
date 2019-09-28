@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -36,17 +38,17 @@ class User
   field :locked_at,       type: Time
 
   ## user details
-  field :name,      type: String, default: ''
+  field :name, type: String, default: ''
 
   ## kyc related details
-  field :aadhaar_number,  type: String
-  field :pan_number,  type: String
-  field :kyc_verified, type: Boolean, default: true #@todo Integrate KYC verification, make default value false and put validation
+  field :aadhaar_number, type: String
+  field :pan_number, type: String
+  field :kyc_verified, type: Boolean, default: true # @todo Integrate KYC verification, make default value false and put validation
 
-  #associations
+  # associations
   has_one :portfolio
 
-  #callbacks
+  # callbacks
   after_create do
     create_portfolio(invested_amount: 0.0, xirr: 0.0, current_value: 0.0, absolute_return_percentage: 0.0)
   end

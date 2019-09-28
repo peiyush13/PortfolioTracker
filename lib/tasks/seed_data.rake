@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 namespace :seed_data do
-  desc "Seed AMFI Data and put it in NAV Details"
+  desc 'Seed AMFI Data and put it in NAV Details'
 
   task seed_amfi_data: :environment do
     begin
-      #destroy all of previous records
+      # destroy all of previous records
       FundHouse.delete_all
       Scheme.delete_all
       NavDetail.delete_all
 
       # initialize fund house,schemes and nav_details
-      fund_house = FundHouse.create(name: 'Axis Mutual Fund', fundhouse_id: 53, aum: 1022211500000.0)
+      fund_house = FundHouse.create(name: 'Axis Mutual Fund', fundhouse_id: 53, aum: 1_022_211_500_000.0)
       schemes = []
       nav_details = []
       nav_details_data = []
@@ -20,11 +22,11 @@ namespace :seed_data do
       params = { mf: fund_house.fundhouse_id, tp: tp, frmdt: from_date, todt: to_date }
       uri.query = URI.encode_www_form(params)
       res = Net::HTTP.get_response(uri)
-      nav_data = res.body.split("\r\n").reject{ |i| i.blank? || i.split(';').count == 1 }.drop(1)
+      nav_data = res.body.split("\r\n").reject { |i| i.blank? || i.split(';').count == 1 }.drop(1)
       nav_data.each do |nav_details|
         data = nav_details.split(';')
         scheme = schemes.find { |sc| sc.code == data[0] }
-        if !scheme.present?
+        unless scheme.present?
           scheme = Scheme.find_or_create_by(code: data[0], name: data[1], isin_div_payout: data[2], isin_div_reinvestment: data[3], fund_house: fund_house)
           schemes << scheme
         end

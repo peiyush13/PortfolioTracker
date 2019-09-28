@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Class Investment provides details about user's investment portfolio in various schemes
 #
 #
@@ -20,9 +22,9 @@ class Investment
 
   ## indexes
   # scheme wise ascending and date wise descending index as most of the time we will deal with fresh NAV details
-  index({ scheme_id: 1, portfolio_id: 1 })
+  index(scheme_id: 1, portfolio_id: 1)
 
-  ##validations
+  # validations
   validates :units, :invested_amount, :portfolio_id, :scheme_id, :last_updated_date, presence: true
   validates :units, :invested_amount, numericality: { greater_than_or_equal_to: 0 }
   validates :xirr, :absolute_return_percentage, numericality: { greater_than_or_equal_to: -100, less_than_or_equal_to: 100 }

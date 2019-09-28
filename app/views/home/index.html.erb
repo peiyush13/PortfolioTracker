@@ -58,6 +58,7 @@
       var data = event.detail[0];
       $('.current-value').text(data.current_value);
       $('.absolute-returns').text(data.absolute_returns + '%');
+      $('.xirr').text(data.xirr + '%');
       $('.output-data').removeClass('hidden');
     })
   });

@@ -61,3 +61,4 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 gem 'bootstrap-sass', '3.3.6'
 gem 'sidekiq'
 gem 'whenever', :require => false
+gem 'xirr'
