@@ -25,4 +25,9 @@ class Scheme
 
   ##validations
   validates :name, :code, :fund_house_id, presence: true
+
+
+  def current_nav
+    nav_details.desc(:date).first.nav
+  end
 end

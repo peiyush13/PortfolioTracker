@@ -28,7 +28,7 @@ namespace :seed_data do
           scheme = Scheme.find_or_create_by(code: data[0], name: data[1], isin_div_payout: data[2], isin_div_reinvestment: data[3], fund_house: fund_house)
           schemes << scheme
         end
-        nav_details_data << { scheme_id: scheme.id, nav: data[4].to_f, repurchasing_price: data[5].to_f, sale_price: data[6].to_f, date: data[7], created_at: DateTime.now, updated_at: DateTime.now }
+        nav_details_data << { scheme_id: scheme.id, nav: data[4].to_f, repurchasing_price: data[5].to_f, sale_price: data[6].to_f, date: Date.parse(data[7]), created_at: DateTime.now, updated_at: DateTime.now }
       end
       NavDetail.collection.insert_many(nav_details_data)
     rescue StandardError, SocketError => error

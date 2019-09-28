@@ -1,7 +1,22 @@
 class HomeController < ApplicationController
   def index
     if(!current_user)
-      redirect_to "/sessions/new"
+    else
+      redirect_to '/user/investments/new'
+    end
+  end
+
+  def value_calculator
+    scheme = Scheme.find(params[:fund_name])
+    nav_details = scheme.nav_details.where(date: { '$gte': Date.parse(params[:date_of_investment]) }).asc(:date).first
+    units = params[:amount].to_f / nav_details.nav
+    current_value = (units*scheme.current_nav).round(2)
+    absolute_returns = (((current_value / params[:amount].to_f)*100) - 100).round(2)
+    respond_to do |format|
+      format.json { render :json => { current_value: current_value, absolute_returns: absolute_returns } }
+      format.html {}
     end
   end
 end
+
+

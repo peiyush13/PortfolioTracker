@@ -45,4 +45,9 @@ class User
 
   #associations
   has_one :portfolio
+
+  #callbacks
+  after_create do
+    create_portfolio(invested_amount: 0.0, xirr: 0.0, current_value: 0.0, absolute_return_percentage: 0.0)
+  end
 end

@@ -10,7 +10,7 @@ class Investment
   field :xirr, type: Float
   field :current_value, type: Float
   field :absolute_return_percentage, type: Float
-  field :date, type: Date
+  field :last_updated_date, type: Date
 
   ## associations
   belongs_to :scheme
@@ -23,7 +23,7 @@ class Investment
   index({ scheme_id: 1, portfolio_id: 1 })
 
   ##validations
-  validates :units, :invested_amount, :portfolio_id, :scheme_id, :date, presence: true
+  validates :units, :invested_amount, :portfolio_id, :scheme_id, :last_updated_date, presence: true
   validates :units, :invested_amount, numericality: { greater_than_or_equal_to: 0 }
   validates :xirr, :absolute_return_percentage, numericality: { greater_than_or_equal_to: -100, less_than_or_equal_to: 100 }
 end

@@ -1,2 +1,64 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<% if user_signed_in? %>
+  <li>
+  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+  </li>
+<% else %>
+  <li>
+  <%= link_to('Login', new_user_session_path) %>
+  </li>
+<% end %>
+<div class="container">
+  <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <h3>Check Current value of your Mutual Fund Investment</h3>
+        <%= form_with url: home_value_calculator_path, class: 'form', remote: true, format: :json, method: :get do |f| %>
+          <%= f.label :fund_house %>
+          <%= f.text_field :fund_house , disabled: true, value: 'Axis Mutual Fund', class: 'form-control' %>
+          </br>
+          <%= f.label :fund_name %>
+          <%= select_tag(:fund_name, options_from_collection_for_select(Scheme.all, :id, :name), class: 'form-control', required: true) %>
+          </br>
+          <%= f.label :date_of_investment %>
+          <%= f.text_field :date_of_investment, class: "form-control date-of-investment", as: :bootstrap_datepicker, required: true %>
+          </br>
+          <%= f.label :amount %>
+          <%= f.number_field :amount, class: 'form-control', required: true %>
+          </br>
+          <center><%= f.submit :submit, class: 'btn btn-success get-current-value' %></center>
+        <% end %>
+        <div class="row output-data hidden">
+          <div class="row">
+            <label for="Current Value">Current Value : </label>
+            <span class='current-value'>N/A<span>
+          </div>
+          <div class="row">
+            <label for="Absolute Returns">Absolute Returns : </label>
+            <span class='absolute-returns'>N/A<span>
+          </div>
+          <div class="row">
+            <label for="xirr">XIRR(Annual Returns) :</label>
+            <span class='xirr'>N/A<span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function () {
+    $('.date-of-investment').datetimepicker({
+      minDate: '04-01-2015',
+      maxDate: moment(),
+      format: 'DD/MM/YYYY',
+    });
+
+    $('.form').on('ajax:success', function(event,response){
+      var data = event.detail[0];
+      $('.current-value').text(data.current_value);
+      $('.absolute-returns').text(data.absolute_returns + '%');
+      $('.output-data').removeClass('hidden');
+    })
+  });
+</script>
