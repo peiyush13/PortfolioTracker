@@ -1,24 +1,13 @@
-# README
+PortFolioTracker is a simple platforms that takes a date and invested an amount as a parameter and computes the investment value as of today.(only Supported for AXIS Bank Fund house)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version - 2.4.4
 
-Things you may want to cover:
+* Database initialization 
+```rake seed_data:seed_amfi_data```
 
-* Ruby version
+* Services 
+NavUpdater service which will run daily to update NAVs of funds for Axis.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+What's  Upcoming Next
+- You can add multiple investments for particular user
+- investment dashboard
