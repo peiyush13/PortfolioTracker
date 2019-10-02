@@ -1,16 +1,4 @@
 Rails.application.routes.draw do
-  namespace :user do
-    get 'investments/new'
-  end
-
-  namespace :user do
-    get 'investments/index'
-  end
-
-  namespace :user do
-    get 'investments/show'
-  end
-
   get 'home/index'
   get 'home/value_calculator'
 

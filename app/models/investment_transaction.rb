@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# Class Transaction provides details about user's transaction for particular scheme or investment
+# Class InvestmentTransaction provides details about user's transaction for particular scheme or investment
 #
 #
-class Transaction
+class InvestmentTransaction
   include Mongoid::Document
   include Mongoid::Timestamps
 

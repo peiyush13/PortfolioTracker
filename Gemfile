@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'mongoid', '~> 6.0'
 gem 'bson_ext'
-gem 'devise'
+gem 'devise', '>= 4.7.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -58,7 +58,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'jquery-rails' # dependency of daterangepicker
 gem 'momentjs-rails' # dependency of daterangepicker
 gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
-gem 'bootstrap-sass', '3.3.6'
+gem 'bootstrap-sass'
 gem 'sidekiq'
 gem 'whenever', :require => false
 gem 'xirr'
